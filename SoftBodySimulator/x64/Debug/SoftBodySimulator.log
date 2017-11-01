@@ -1,0 +1,10 @@
+﻿  main.cpp
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp___glutInitWithExit в функции glutInit_ATEXIT_HACK
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp_glutInitDisplayMode в функции main
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp_glutInitWindowPosition в функции main
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp_glutInitWindowSize в функции main
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp_glutMainLoop в функции main
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp___glutCreateWindowWithExit в функции glutCreateWindow_ATEXIT_HACK
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ __imp_glutDisplayFunc в функции main
+D:\VS\VC\Tools\MSVC\14.11.25503\lib\x64\glut32.lib : warning LNK4272: тип компьютера библиотеки "x86" конфликтует с типом целевого компьютера "x64"
+D:\KPI\semester_3\course_work\SoftBodySimulator\x64\Debug\SoftBodySimulator.exe : fatal error LNK1120: неразрешенных внешних элементов: 7
