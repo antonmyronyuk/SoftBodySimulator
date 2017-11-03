@@ -1,4 +1,6 @@
 #include <glut.h> 
+#include "Point3d.h"
+
 
 // world (cube)
 float angleX = 0.f;
@@ -11,8 +13,7 @@ GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };		/* Red diffuse light. */
 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };		/* Infinite light location. */
 GLfloat light_position2[] = { -1.0, -1.0, -1.0, 0.0 };  /* Infinite light location. */
 
-void init()
-{
+void init() {
 	/* Enable a single OpenGL light. */
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
@@ -110,6 +111,14 @@ void display() {
 
 
 int main(int argc, char **argv) {
+
+	//Point3d p(2, 3, 4.1), pp(1, 1, 1);
+	//Point3d p1(p);
+	//p1.show();
+	//p1.set(pp);
+	//p1.show();
+
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800);
