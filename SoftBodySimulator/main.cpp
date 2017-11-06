@@ -1,5 +1,6 @@
 #include <glut.h> 
 #include "Point3d.h"
+#include "Particle.h"
 
 
 // world (cube)
@@ -117,6 +118,13 @@ int main(int argc, char **argv) {
 	//p1.show();
 	//p1.set(pp);
 	//p1.show();
+
+	//Particle particle;
+	//particle.setPosition(p);
+	//particle.setLastPosition(pp);
+	//particle.getLastPosition().show();
+	//particle.getPosition().show();
+	
 
 
 	glutInit(&argc, argv);
