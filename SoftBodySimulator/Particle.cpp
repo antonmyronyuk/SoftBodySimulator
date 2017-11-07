@@ -1,5 +1,5 @@
-#include "Point3d.h"
 #include "Particle.h"
+
 
 
 Particle::Particle(): 

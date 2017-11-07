@@ -52,11 +52,18 @@ void processRotateKeys(int key, int x, int y) {
 	else if (key == GLUT_KEY_RIGHT) {
 		angleY -= 5.f;
 	}
+	else if (key == GLUT_KEY_DOWN) {
+		angleX += 5.f;
+	}
+	else if (key == GLUT_KEY_UP) {
+		angleX -= 5.f;
+	}
 }
 
 void drawWorld() {
 	glPushMatrix();
 	glRotatef(angleY, 0.f, 1.f, 0.f);
+	//glRotatef(angleX, 1.f, 0.f, 0.f);
 
 	glColor3f(0.f, 0.f, 0.f);
 	glDisable(GL_LIGHTING);
