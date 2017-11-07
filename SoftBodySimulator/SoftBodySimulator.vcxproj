@@ -120,6 +120,7 @@
     <ClCompile Include="Point3d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constraint.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Point3d.h" />
   </ItemGroup>

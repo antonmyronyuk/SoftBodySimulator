@@ -37,7 +37,7 @@ void init() {
 		0.f, 0.f, 0.f,			//center position
 		0.f, 1.f, 0.f);			//direction
 
-	glClearColor(0.f, 0.f, 0.f, 1.f);
+	glClearColor(0.5f, 0.8f, 0.8f, 1.f);
 	glPointSize(2);
 
 	glEnable(GL_COLOR_MATERIAL);
@@ -58,7 +58,7 @@ void drawWorld() {
 	glPushMatrix();
 	glRotatef(angleY, 0.f, 1.f, 0.f);
 
-	glColor3f(1.f, 1.f, 1.f);
+	glColor3f(0.f, 0.f, 0.f);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_LINES);
 
