@@ -5,9 +5,9 @@
 
 class FixConstraint : public Constraint {
 
-	Particle& particle;
-	Point3d position;
-	CONSTRAINT_TYPE type;
+	Particle& particle_;
+	Point3d position_;
+	CONSTRAINT_TYPE type_;
 
 public:
 	FixConstraint(const FixConstraint& fixConstraint);

@@ -1,32 +1,32 @@
 #include "FixConstraint.h"
 
 FixConstraint::FixConstraint(const FixConstraint& fixConstraint): 
-	particle(fixConstraint.particle),
-	position(fixConstraint.position), 
-	type(eFix) {
+	particle_(fixConstraint.particle_),
+	position_(fixConstraint.position_), 
+	type_(eFix) {
 }
 
 FixConstraint::FixConstraint(Particle& particle, const Point3d& position): 
-	particle(particle), 
-	position(position), 
-	type(eFix) {
+	particle_(particle), 
+	position_(position), 
+	type_(eFix) {
 }
 
 FixConstraint::~FixConstraint(){
 }
 
 void FixConstraint::apply(float step) {
-	particle.setPosition(position);
+	particle_.position.set(position_);
 }
 
 Particle& FixConstraint::getParticle() const {
-	return particle;
+	return particle_;
 }
 
 Point3d FixConstraint::getPosition() const {
-	return position;
+	return position_;
 }
 
 CONSTRAINT_TYPE FixConstraint::getType() const {
-	return type;
+	return type_;
 }

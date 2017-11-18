@@ -25,27 +25,3 @@ Particle::Particle(const Point3d& position, int objectId, float mass):
 	mass(mass) {
 	w = 1.f / mass;
 }
-
-void Particle::setPosition(const Point3d& position) {
-	this->position = position;
-}
-
-void Particle::setLastPosition(const Point3d& position) {
-	this->lastPosition = position;
-}
-
-Point3d Particle::getPosition() const {
-	return position;
-}
-
-Point3d Particle::getLastPosition() const {
-	return lastPosition;
-}
-
-float Particle::getMass() const {
-	return mass;
-}
-
-float Particle::getW() const {
-	return w;
-}
