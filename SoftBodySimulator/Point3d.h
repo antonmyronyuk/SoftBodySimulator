@@ -47,4 +47,6 @@ public:
 
 	void show();
 
+	Point3d cross(const Point3d& point) const; // for BandConstraint
+
 };

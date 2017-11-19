@@ -190,3 +190,11 @@ void Point3d::show() {
 		<< m_y << ' '
 		<< m_z << '\n';
 }
+
+Point3d Point3d::cross(const Point3d& point) const {
+	return Point3d(
+		m_y * point.m_z - m_z * point.m_y,
+		m_z * point.m_x - m_x * point.m_z,
+		m_x * point.m_y - m_y * point.m_x
+	);
+}

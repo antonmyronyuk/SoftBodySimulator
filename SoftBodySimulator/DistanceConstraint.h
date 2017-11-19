@@ -2,8 +2,7 @@
 
 #include "Constraint.h"
 
-class DistanceConstraint : public Constraint
-{
+class DistanceConstraint : public Constraint {
 	Particle& particleA_;
 	Particle& particleB_;
 	float distance_;
