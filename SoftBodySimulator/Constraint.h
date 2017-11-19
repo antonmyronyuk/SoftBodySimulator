@@ -5,7 +5,7 @@
 enum CONSTRAINT_TYPE {
 	eDistance = 0,
 	eFix,
-	eBand
+	eBend
 };
 
 class Constraint {

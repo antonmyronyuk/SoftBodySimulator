@@ -1,10 +1,10 @@
-﻿  Point3d.cpp
-  Particle.cpp
-  FixConstraint.cpp
+﻿  DistanceConstraint.cpp
   Создание кода...
   Компиляция...
-  DistanceConstraint.cpp
+  FixConstraint.cpp
   Создание кода...
   Пропуск... (изменения не обнаружены)
   main.cpp
+  Point3d.cpp
+  Particle.cpp
   SoftBodySimulator.vcxproj -> D:\KPI\semester_3\course_work\SoftBodySimulator\Debug\SoftBodySimulator.exe
