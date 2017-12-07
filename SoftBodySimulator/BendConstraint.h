@@ -3,6 +3,12 @@
 #include "Constraint.h"
 
 class BandConstraint : public Constraint {
+	Particle& particle1_;
+	Particle& particle2_;
+	Particle& particle3_;
+	Particle& particle4_;
+	float f0_;
+	CONSTRAINT_TYPE type_;
 public:
 	BandConstraint(const BandConstraint& bandConstraint);
 	BandConstraint(Particle& particle1, Particle& particle2, Particle& particle3, Particle& particle4, float f0);
@@ -17,12 +23,6 @@ public:
 	float getF0() const;
 
 	virtual CONSTRAINT_TYPE getType() const;
-private:
-	Particle& particle1_;
-	Particle& particle2_;
-	Particle& particle3_;
-	Particle& particle4_;
-	float f0_;
-	CONSTRAINT_TYPE type_;
+
 };
 
