@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BendConstraint.cpp" />
     <ClCompile Include="DistanceConstraint.cpp" />
     <ClCompile Include="FixConstraint.cpp" />
     <ClCompile Include="main.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="Point3d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BendConstraint.h" />
     <ClInclude Include="Constraint.h" />
     <ClInclude Include="DistanceConstraint.h" />
     <ClInclude Include="FixConstraint.h" />
