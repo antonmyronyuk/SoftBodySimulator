@@ -1,6 +1,7 @@
-#include <glut.h> 
 #include "Point3d.h"
 #include "Particle.h"
+#include "SoftBody.h"
+#include <glut.h>
 
 
 // world (cube)

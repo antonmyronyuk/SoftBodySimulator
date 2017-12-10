@@ -1,2 +1,4 @@
 ﻿  main.cpp
+glu32.lib(GLU32.dll) : warning LNK4209: юЄырфюўэ√х фрээ√х яютЁхцфхэ√; яхЁхъюьяшышЁєщЄх ьюфєы№; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
+glu32.lib(GLU32.dll) : warning LNK4209: юЄырфюўэ√х фрээ√х яютЁхцфхэ√; яхЁхъюьяшышЁєщЄх ьюфєы№; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
   SoftBodySimulator.vcxproj -> D:\KPI\semester_3\course_work\SoftBodySimulator\Debug\SoftBodySimulator.exe

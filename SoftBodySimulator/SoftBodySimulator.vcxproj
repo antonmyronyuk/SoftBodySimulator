@@ -122,6 +122,7 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticlesSym.cpp" />
     <ClCompile Include="Point3d.cpp" />
+    <ClCompile Include="SoftBody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BendConstraint.h" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticlesSym.h" />
     <ClInclude Include="Point3d.h" />
+    <ClInclude Include="SoftBody.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
