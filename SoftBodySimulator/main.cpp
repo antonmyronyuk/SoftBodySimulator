@@ -1,5 +1,3 @@
-#include "Point3d.h"
-#include "Particle.h"
 #include "SoftBody.h"
 #include <glut.h>
 
@@ -14,6 +12,34 @@ float worldD = 200.f;
 GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };		/* Red diffuse light. */
 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };		/* Infinite light location. */
 GLfloat light_position2[] = { -1.0, -1.0, -1.0, 0.0 };  /* Infinite light location. */
+
+ParticlesSym particlesSym;
+std::vector<std::pair<unsigned int, unsigned int> > constraints;
+SoftBody body(&particlesSym);
+
+Point3d getOGLPos(int x, int y) {
+	GLint viewport[4];
+	GLdouble modelview[16];
+	GLdouble projection[16];
+	GLfloat winX, winY, winZ;
+	GLdouble posX, posY, posZ;
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+	glGetDoublev(GL_PROJECTION_MATRIX, projection);
+	glGetIntegerv(GL_VIEWPORT, viewport);
+
+	winX = (float)x;
+	winY = (float)viewport[3] - (float)y;
+	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	//std::cout << winZ << std::endl;
+	if (winZ > 0.999999999f) {
+		winZ = 0.997f;
+	}
+
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+	//std::cout << posX << "   " << posY << "   " << posZ << std::endl;
+	return Point3d(posX, posY, posZ);
+}
 
 void init() {
 	/* Enable a single OpenGL light. */
@@ -61,7 +87,140 @@ void processRotateKeys(int key, int x, int y) {
 	}
 }
 
+bool isDown = false;
+
+void mouseFunc(int button, int state, int x, int y) {
+	if (state == GLUT_DOWN) {
+		isDown = true;
+	}
+	if (state == GLUT_UP) {
+		isDown = false;
+		particlesSym.turnForceOff();
+	}
+
+	if (isDown) {
+		Point3d p = getOGLPos(x, y);
+		particlesSym.turnForceOn(p);
+	}
+
+}
+
+void motionFunc(int x, int y) {
+	if (isDown) {
+		Point3d p = getOGLPos(x, y);
+		particlesSym.turnForceOn(p);
+	}
+
+}
+
+void buildCube(float size) {
+	std::vector<Point3d> points;
+	std::vector<size_t> inds;
+	std::vector<std::pair<unsigned int, unsigned int> > constraints;
+	points.push_back(Point3d(-size, -size, size)); //1
+	points.push_back(Point3d(-size, -size, -size)); //2
+	points.push_back(Point3d(size, -size, -size)); //3
+	points.push_back(Point3d(size, -size, size)); //4
+	points.push_back(Point3d(-size, size, size)); //5
+	points.push_back(Point3d(-size, size, -size)); //6
+	points.push_back(Point3d(size, size, -size)); //7
+	points.push_back(Point3d(size, size, size)); //8
+
+	inds.clear();
+	inds.push_back(0);
+	inds.push_back(1);
+	inds.push_back(2);
+
+	inds.push_back(2);
+	inds.push_back(3);
+	inds.push_back(0);
+
+	inds.push_back(4);
+	inds.push_back(5);
+	inds.push_back(6);
+
+	inds.push_back(6);
+	inds.push_back(7);
+	inds.push_back(4);
+
+	inds.push_back(0);
+	inds.push_back(4);
+	inds.push_back(7);
+
+	inds.push_back(7);
+	inds.push_back(3);
+	inds.push_back(0);
+
+	inds.push_back(1);
+	inds.push_back(5);
+	inds.push_back(6);
+
+	inds.push_back(6);
+	inds.push_back(2);
+	inds.push_back(1);
+
+	inds.push_back(0);
+	inds.push_back(4);
+	inds.push_back(5);
+
+	inds.push_back(5);
+	inds.push_back(1);
+	inds.push_back(0);
+
+	inds.push_back(3);
+	inds.push_back(7);
+	inds.push_back(6);
+
+	inds.push_back(6);
+	inds.push_back(2);
+	inds.push_back(3);
+
+	constraints.clear();
+	constraints.push_back(std::make_pair(0, 1));
+	constraints.push_back(std::make_pair(1, 2));
+	constraints.push_back(std::make_pair(2, 3));
+	constraints.push_back(std::make_pair(3, 0));
+	constraints.push_back(std::make_pair(4, 5));
+	constraints.push_back(std::make_pair(5, 6));
+	constraints.push_back(std::make_pair(6, 7));
+	constraints.push_back(std::make_pair(7, 4));
+	constraints.push_back(std::make_pair(0, 4));
+	constraints.push_back(std::make_pair(1, 5));
+	constraints.push_back(std::make_pair(2, 6));
+	constraints.push_back(std::make_pair(3, 7));
+
+	constraints.push_back(std::make_pair(0, 6));
+	constraints.push_back(std::make_pair(4, 2));
+	constraints.push_back(std::make_pair(3, 5));
+	constraints.push_back(std::make_pair(1, 7));
+
+	constraints.push_back(std::make_pair(0, 7));
+	constraints.push_back(std::make_pair(4, 3));
+
+	constraints.push_back(std::make_pair(1, 6));
+	constraints.push_back(std::make_pair(5, 2));
+
+	constraints.push_back(std::make_pair(0, 5));
+	constraints.push_back(std::make_pair(4, 1));
+
+	constraints.push_back(std::make_pair(3, 6));
+	constraints.push_back(std::make_pair(7, 2));
+
+	constraints.push_back(std::make_pair(0, 2));
+	constraints.push_back(std::make_pair(1, 3));
+
+	constraints.push_back(std::make_pair(4, 6));
+	constraints.push_back(std::make_pair(5, 7));
+
+	body.setStiffness(0.03f);
+	body.setColor(1.f, 1.f, 1.f);
+	body.setMesh(points, inds, false, constraints);
+	body.addFix(0, -size, -size, size);
+}
+
 void drawWorld() {
+
+	particlesSym.step(20);
 	glPushMatrix();
 	glRotatef(angleY, 0.f, 1.f, 0.f);
 	//glRotatef(angleX, 1.f, 0.f, 0.f);
@@ -108,7 +267,7 @@ void drawWorld() {
 
 	glEnd();
 	glEnable(GL_LIGHTING);
-
+	body.render();
 	glPopMatrix();
 }
 
@@ -134,14 +293,20 @@ int main(int argc, char **argv) {
 	//particle.getLastPosition().show();
 	//particle.getPosition().show();
 	
-
+	particlesSym.setGravity(Point3d(0.f, -1.2f, 0.f));
+	particlesSym.setFriction(0.97f);
+	particlesSym.setGroundFriction(0.96f);
+	particlesSym.setWorldSize(worldW, worldH, worldD);
+	buildCube(20.f);
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("SoftBodySimulator");
 
-	glutDisplayFunc(display);	
+	glutDisplayFunc(display);
+	glutMouseFunc(mouseFunc);
+	glutMotionFunc(motionFunc);
 	glutIdleFunc(display);
 	init();
 	glutSpecialFunc(processRotateKeys);

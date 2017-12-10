@@ -120,7 +120,7 @@ Point3d ParticlesSym::getParticlePos(unsigned int ind) const {
 
 void ParticlesSym::turnForceOn(const Point3d& p) {
 	m_forceCenter = p;
-	m_forcePower = 1360.5f;
+	m_forcePower = 5360.f;
 }
 
 void ParticlesSym::turnForceOff() {
