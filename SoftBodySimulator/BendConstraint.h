@@ -2,7 +2,7 @@
 
 #include "Constraint.h"
 
-class BandConstraint : public Constraint {
+class BendConstraint : public Constraint {
 	Particle& particle1_;
 	Particle& particle2_;
 	Particle& particle3_;
@@ -10,9 +10,9 @@ class BandConstraint : public Constraint {
 	float f0_;
 	CONSTRAINT_TYPE type_;
 public:
-	BandConstraint(const BandConstraint& bandConstraint);
-	BandConstraint(Particle& particle1, Particle& particle2, Particle& particle3, Particle& particle4, float f0);
-	virtual ~BandConstraint();
+	BendConstraint(const BendConstraint& BendConstraint);
+	BendConstraint(Particle& particle1, Particle& particle2, Particle& particle3, Particle& particle4, float f0);
+	virtual ~BendConstraint();
 
 	virtual void apply(float step);
 

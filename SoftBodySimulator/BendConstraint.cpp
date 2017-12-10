@@ -2,15 +2,15 @@
 #include <math.h>
 #include "BendConstraint.h"
 
-BandConstraint::BandConstraint(const BandConstraint& bandConstraint): 
-	particle1_(bandConstraint.particle1_),
-	particle2_(bandConstraint.particle3_), 
-	particle3_(bandConstraint.particle3_), 
-	particle4_(bandConstraint.particle4_), 
-	f0_(bandConstraint.getF0()), 
+BendConstraint::BendConstraint(const BendConstraint& BendConstraint): 
+	particle1_(BendConstraint.particle1_),
+	particle2_(BendConstraint.particle3_), 
+	particle3_(BendConstraint.particle3_), 
+	particle4_(BendConstraint.particle4_), 
+	f0_(BendConstraint.getF0()), 
 	type_(eBend) {
 
-	if (bandConstraint.f0_ > 1000.f) {
+	if (BendConstraint.f0_ > 1000.f) {
 		Point3d p2 = particle2_.position - particle1_.position;
 		Point3d p3 = particle3_.position - particle1_.position;
 		Point3d p4 = particle4_.position - particle1_.position;
@@ -24,7 +24,7 @@ BandConstraint::BandConstraint(const BandConstraint& bandConstraint):
 	}
 }
 
-BandConstraint::BandConstraint(Particle& particle1, Particle& particle2, Particle& particle3, Particle& particle4, float f0): 
+BendConstraint::BendConstraint(Particle& particle1, Particle& particle2, Particle& particle3, Particle& particle4, float f0): 
 	particle1_(particle1), 
 	particle2_(particle2), 
 	particle3_(particle3), 
@@ -46,10 +46,10 @@ BandConstraint::BandConstraint(Particle& particle1, Particle& particle2, Particl
 	}
 }
 
-BandConstraint::~BandConstraint() {
+BendConstraint::~BendConstraint() {
 }
 
-void BandConstraint::apply(float step) {
+void BendConstraint::apply(float step) {
 	Point3d p2 = particle2_.position - particle1_.position;
 	Point3d p3 = particle3_.position - particle1_.position;
 	Point3d p4 = particle4_.position - particle1_.position;
@@ -81,26 +81,26 @@ void BandConstraint::apply(float step) {
 	particle4_.position -= q4 * particle4_.w * sd;
 }
 
-Particle& BandConstraint::getParticle1() const {
+Particle& BendConstraint::getParticle1() const {
 	return particle1_;
 }
 
-Particle& BandConstraint::getParticle2() const {
+Particle& BendConstraint::getParticle2() const {
 	return particle2_;
 }
 
-Particle& BandConstraint::getParticle3() const {
+Particle& BendConstraint::getParticle3() const {
 	return particle3_;
 }
 
-Particle& BandConstraint::getParticle4() const {
+Particle& BendConstraint::getParticle4() const {
 	return particle4_;
 }
 
-float BandConstraint::getF0() const {
+float BendConstraint::getF0() const {
 	return f0_;
 }
 
-CONSTRAINT_TYPE BandConstraint::getType() const {
+CONSTRAINT_TYPE BendConstraint::getType() const {
 	return type_;
 }

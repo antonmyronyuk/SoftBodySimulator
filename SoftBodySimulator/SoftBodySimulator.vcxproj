@@ -120,6 +120,7 @@
     <ClCompile Include="FixConstraint.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticlesSym.cpp" />
     <ClCompile Include="Point3d.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
     <ClInclude Include="DistanceConstraint.h" />
     <ClInclude Include="FixConstraint.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticlesSym.h" />
     <ClInclude Include="Point3d.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
