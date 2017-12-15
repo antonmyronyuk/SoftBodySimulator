@@ -60,7 +60,7 @@ void init() {
 	glMatrixMode(GL_PROJECTION);
 	gluPerspective(40.f, 1.f, 1.f, 900.f);
 	glMatrixMode(GL_MODELVIEW);
-	gluLookAt(0.f, 0.f, 500.f,	//eye position
+	gluLookAt(0.f, 0.f, 700.f,	//eye position
 		0.f, 0.f, 0.f,			//center position
 		0.f, 1.f, 0.f);			//direction
 
@@ -227,7 +227,7 @@ void buildCube(float size) {
 	constraints.push_back(std::make_pair(4, 6));
 	constraints.push_back(std::make_pair(5, 7));
 
-	body.setStiffness(0.02f);
+	body.setStiffness(0.017f);
 	body.setColor(1.f, 1.f, 1.f);
 	body.setMesh(points, inds, false, constraints);
 	//body.setPointPos(0, 200.f, 200.f, 200.f);
@@ -238,7 +238,7 @@ void drawWorld() {
 
 	particlesSym.step(20);
 	glPushMatrix();
-	glRotatef(angleY, 0.f, 1.f, 0.f);
+	//glRotatef(angleY, 0.f, 1.f, 0.f);
 
 	glColor3f(0.f, 0.f, 0.f);
 	glDisable(GL_LIGHTING);
@@ -308,7 +308,7 @@ int main(int argc, char **argv) {
 	//particle.getLastPosition().show();
 	//particle.getPosition().show();
 	
-	particlesSym.setGravity(Point3d(0.f, -1.2f, 0.f));
+	particlesSym.setGravity(Point3d(0.f, -0.98f, 0.f));
 	particlesSym.setFriction(0.97f);
 	particlesSym.setGroundFriction(0.96f);
 	particlesSym.setWorldSize(worldW, worldH, worldD);
