@@ -3,6 +3,7 @@
 #include "DistanceConstraint.h"
 #include "BendConstraint.h"
 #include <math.h>
+#include <iostream>
 
 ParticlesSym::ParticlesSym(): 
 	gravity_(Point3d(0.f, 0.98f, 0.f)), 
@@ -45,17 +46,26 @@ void ParticlesSym::addDistanceConstraint(unsigned int particleInd1, unsigned int
 }
 
 void ParticlesSym::addFixConstraint(unsigned int particleInd, const Point3d& position) {
-	constraints_.push_back(new FixConstraint(particles_[particleInd], position));
+	
+	auto& last = constraints_.back();
+	if (last->getType() == eFix) {
+		auto temp = last;
+		delete temp;
+		last = new FixConstraint(particles_[particleInd], position);
+	}
+	else {
+		constraints_.push_back(new FixConstraint(particles_[particleInd], position));
+	}
 }
 
 void ParticlesSym::disableFixConstraints() {
-	size_t i = constraints_.size() - 1;
-	while (i >= 0 && constraints_[i]->getType() == eFix) {
-		auto temp = constraints_[i];
+	std::cout << constraints_.size() << std::endl;
+	if (constraints_.back()->getType() == eFix) {
+		auto temp = constraints_.back();
 		delete temp;
 		constraints_.pop_back();
-		--i;
 	}
+	
 }
 
 void ParticlesSym::addBandConstraint(unsigned int particleInd1, unsigned int particleInd2, unsigned int particleInd3, unsigned int particleInd4, float f0) {
