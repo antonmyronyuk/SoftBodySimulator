@@ -25,7 +25,8 @@ public:
 
 	void setMesh(const std::vector<Point3d>& points, const std::vector<size_t>& inds, bool smoothed, const std::vector<std::pair<size_t, size_t>>& links);
 	void addFix(int pointInd, float x, float y, float z);
-
+	void disableFix();
+	void setPointPos(int pointInd, float x, float y, float z);
 	void setStiffness(float stiffness);
 	void setColor(float r, float g, float b);
 	void setRenderMode(bool solid);

@@ -80,38 +80,53 @@ void processRotateKeys(int key, int x, int y) {
 		angleY -= 5.f;
 	}
 	else if (key == GLUT_KEY_DOWN) {
-		angleX += 5.f;
+		body.disableFix();
 	}
-	else if (key == GLUT_KEY_UP) {
-		angleX -= 5.f;
-	}
+
 }
 
-bool isDown = false;
+bool rightDown = false;
+bool leftDown = false;
 
 void mouseFunc(int button, int state, int x, int y) {
-	if (state == GLUT_DOWN) {
-		isDown = true;
+	if (state == GLUT_DOWN && button == GLUT_LEFT_BUTTON) {
+		leftDown = true;
 	}
-	if (state == GLUT_UP) {
-		isDown = false;
+	if (state == GLUT_UP && button == GLUT_LEFT_BUTTON) {
+		leftDown = false;
 		particlesSym.turnForceOff();
 	}
 
-	if (isDown) {
+	if (state == GLUT_DOWN && button == GLUT_RIGHT_BUTTON) {
+		rightDown = true;
+	}
+	if (state == GLUT_UP && button == GLUT_RIGHT_BUTTON) {
+		rightDown = false;
+	}
+
+	if (leftDown) {
 		Point3d p = getOGLPos(x, y);
 		particlesSym.turnForceOn(p);
+	}
+	if (rightDown) {
+		Point3d p = getOGLPos(x, y);
+		body.addFix(0, p.X(), p.Y(), p.Z());
 	}
 
 }
 
 void motionFunc(int x, int y) {
-	if (isDown) {
+	if (leftDown) {
 		Point3d p = getOGLPos(x, y);
 		particlesSym.turnForceOn(p);
 	}
-
+	if (rightDown) {
+		Point3d p = getOGLPos(x, y);
+		body.addFix(0, p.X(), p.Y(), p.Z());
+	}
 }
+
+
 
 void buildCube(float size) {
 	std::vector<Point3d> points;
@@ -215,7 +230,8 @@ void buildCube(float size) {
 	body.setStiffness(0.02f);
 	body.setColor(1.f, 1.f, 1.f);
 	body.setMesh(points, inds, false, constraints);
-	body.addFix(0, -size, -size + 50.f, size);
+	//body.setPointPos(0, 200.f, 200.f, 200.f);
+	//body.addFix(0, -size, -size + 50.f, size);
 }
 
 void drawWorld() {
@@ -223,7 +239,6 @@ void drawWorld() {
 	particlesSym.step(20);
 	glPushMatrix();
 	glRotatef(angleY, 0.f, 1.f, 0.f);
-	//glRotatef(angleX, 1.f, 0.f, 0.f);
 
 	glColor3f(0.f, 0.f, 0.f);
 	glDisable(GL_LIGHTING);

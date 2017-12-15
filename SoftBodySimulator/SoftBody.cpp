@@ -15,6 +15,10 @@ SoftBody::SoftBody(ParticlesSym* sym):
 SoftBody::~SoftBody() {
 }
 
+void SoftBody::setPointPos(int pointInd, float x, float y, float z) {
+	m_sym->setParticle(pointInd, Point3d(x, y, z));
+}
+
 void SoftBody::setMesh(const std::vector<Point3d>& points, const std::vector<size_t>& inds, bool smoothed, const std::vector<std::pair<size_t, size_t>>& links)
 {
 	m_smoothed = smoothed;
@@ -36,6 +40,10 @@ void SoftBody::setMesh(const std::vector<Point3d>& points, const std::vector<siz
 
 void SoftBody::addFix(int pointInd, float x, float y, float z) {
 	m_sym->addFixConstraint(m_particleInds[pointInd], Point3d(x, y, z));
+}
+
+void SoftBody::disableFix() {
+	m_sym->disableFixConstraints();
 }
 
 void SoftBody::setStiffness(float stiffness) {
@@ -211,7 +219,7 @@ void SoftBody::renderLines() {
 
 void SoftBody::renderCube() {
 	size_t count = m_inds.size() / 3;
-	std::cout << count << std::endl;
+	//std::cout << count << std::endl;
 	glColor3f(m_colorR, m_colorG, m_colorB);
 	glBegin(GL_TRIANGLES);
 	for (size_t i = 0; i < count; i+= 2) {

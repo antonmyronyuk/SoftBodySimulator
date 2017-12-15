@@ -33,12 +33,29 @@ size_t ParticlesSym::addParticle(float x, float y, float z, float mass) {
 	return particles_.size() - 1;
 }
 
+void ParticlesSym::setParticle(size_t ind, Point3d p) {
+	if (ind >= particles_.size() || ind < 0) {
+		return;
+	}
+	particles_[ind] = Particle(p, particles_[ind].mass);
+}
+
 void ParticlesSym::addDistanceConstraint(unsigned int particleInd1, unsigned int particleInd2, float stiffness, float distance) {
 	constraints_.push_back(new DistanceConstraint(particles_[particleInd1], particles_[particleInd2], stiffness, distance));
 }
 
 void ParticlesSym::addFixConstraint(unsigned int particleInd, const Point3d& position) {
 	constraints_.push_back(new FixConstraint(particles_[particleInd], position));
+}
+
+void ParticlesSym::disableFixConstraints() {
+	size_t i = constraints_.size() - 1;
+	while (i >= 0 && constraints_[i]->getType() == eFix) {
+		auto temp = constraints_[i];
+		delete temp;
+		constraints_.pop_back();
+		--i;
+	}
 }
 
 void ParticlesSym::addBandConstraint(unsigned int particleInd1, unsigned int particleInd2, unsigned int particleInd3, unsigned int particleInd4, float f0) {
@@ -65,7 +82,7 @@ void ParticlesSym::step(int steps) {
 
 		for (unsigned int i = 0; i < particles_.size(); ++i) {
 			Point3d velocity = (particles_[i].position - particles_[i].lastPosition) * friction;
-			if (fabsf(particles_[i].position.Y() + height_ / 2.0) < 0.001f) {
+			if (fabsf(particles_[i].position.Y() + height_ / 2.f) < 0.001f) {
 				velocity *= groundFriction;
 			}
 
@@ -99,10 +116,10 @@ void ParticlesSym::step(int steps) {
 		for (unsigned int i = 0; i < particles_.size(); ++i) {
 			if (particles_[i].position.X() < -widht_ / 2.f)    particles_[i].position.setX(-widht_ / 2.f);
 			if (particles_[i].position.X() > widht_ / 2.f) particles_[i].position.setX(widht_ / 2.f);
-			if (particles_[i].position.Y() < -height_ / 2.0)     particles_[i].position.setY(-height_ / 2.0);
-			if (particles_[i].position.Y() > height_ / 2.0) particles_[i].position.setY(height_ / 2.0);
-			if (particles_[i].position.Z() < -depth_ / 2.0)     particles_[i].position.setZ(-depth_ / 2.0);
-			if (particles_[i].position.Z() > depth_ / 2.0) particles_[i].position.setZ(depth_ / 2.0);
+			if (particles_[i].position.Y() < -height_ / 2.f)     particles_[i].position.setY(-height_ / 2.f);
+			if (particles_[i].position.Y() > height_ / 2.f) particles_[i].position.setY(height_ / 2.f);
+			if (particles_[i].position.Z() < -depth_ / 2.f)     particles_[i].position.setZ(-depth_ / 2.f);
+			if (particles_[i].position.Z() > depth_ / 2.f) particles_[i].position.setZ(depth_ / 2.f);
 		}
 	}
 }
