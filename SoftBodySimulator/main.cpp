@@ -212,10 +212,10 @@ void buildCube(float size) {
 	constraints.push_back(std::make_pair(4, 6));
 	constraints.push_back(std::make_pair(5, 7));
 
-	body.setStiffness(0.03f);
+	body.setStiffness(0.02f);
 	body.setColor(1.f, 1.f, 1.f);
 	body.setMesh(points, inds, false, constraints);
-	body.addFix(0, -size, -size, size);
+	body.addFix(0, -size, -size + 50.f, size);
 }
 
 void drawWorld() {
@@ -267,7 +267,7 @@ void drawWorld() {
 
 	glEnd();
 	glEnable(GL_LIGHTING);
-	body.render();
+	body.renderCube();
 	glPopMatrix();
 }
 

@@ -1,4 +1,5 @@
 #include "SoftBody.h"
+#include <iostream>
 #include <glut.h>
 
 SoftBody::SoftBody(ParticlesSym* sym): 
@@ -137,6 +138,95 @@ void SoftBody::renderNotSmoothed() {
 
 		glNormal3f(n.X(), n.Y(), n.Z());
 		glVertex3f(p3.X(), p3.Y(), p3.Z());
+	}
+	glEnd();
+}
+
+void SoftBody::renderLines() {
+	glBegin(GL_LINES);
+	Point3d p;
+	p = m_sym->getParticlePos(0);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(1);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(1);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(2);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(2);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(3);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(3);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(0);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(4);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(5);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(5);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(6);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(6);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(7);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(7);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(4);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(0);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(4);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(1);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(5);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(2);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(6);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	p = m_sym->getParticlePos(3);
+	glVertex3f(p.X(), p.Y(), p.Z());
+	p = m_sym->getParticlePos(7);
+	glVertex3f(p.X(), p.Y(), p.Z());
+
+	glEnd();
+
+}
+
+void SoftBody::renderCube() {
+	size_t count = m_inds.size() / 3;
+	std::cout << count << std::endl;
+	glColor3f(m_colorR, m_colorG, m_colorB);
+	glBegin(GL_TRIANGLES);
+	for (size_t i = 0; i < count; i+= 2) {
+		std::vector<Point3d> pts;
+		for (size_t j = 0; j < 6; ++j) {
+			pts.push_back(m_sym->getParticlePos(m_particleInds[m_inds[i * 3 + j]]));
+		}
+
+		//normal for cube face
+		Point3d n = (calcNormal(pts[0], pts[1], pts[2]) + calcNormal(pts[3], pts[4], pts[5])) / 2;
+		for (size_t j = 0; j < 6; ++j) {
+			//render 2 triangles with mutal normal
+			glNormal3f(n.X(), n.Y(), n.Z());
+			glVertex3f(pts[j].X(), pts[j].Y(), pts[j].Z());
+		}
 	}
 	glEnd();
 }

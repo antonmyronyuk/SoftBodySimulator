@@ -32,5 +32,7 @@ public:
 	void renderSmoothed();
 	void renderNotSmoothed();
 	void render();
+	void renderLines();
+	void renderCube();
 
 };
