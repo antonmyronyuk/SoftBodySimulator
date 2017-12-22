@@ -39,7 +39,7 @@ public:
 	unsigned int getParticesCount() const;
 	Point3d getParticlePos(unsigned int ind) const;
 
-	void turnForceOn(const Point3d& p);
+	void turnForceOn(const Point3d& p, float power);
 	void turnForceOff();
 
 };

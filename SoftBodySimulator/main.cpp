@@ -10,6 +10,7 @@ float worldW = 200.f;
 float worldH = 200.f;
 float worldD = 200.f;
 float pi = 3.141592f;
+float size = 40.f;
 
 GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };		/* Red diffuse light. */
 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };		/* Infinite light location. */
@@ -114,7 +115,8 @@ void mouseFunc(int button, int state, int x, int y) {
 		Point3d p = getOGLPos(x, y);
 		particlesSym.turnForceOn(Point3d(p.X() * cos(angleY * pi / 180) - p.Z() * sin(angleY * pi / 180),
 			p.Y(),
-			p.Z() * cos(angleY * pi / 180) + p.X() * sin(angleY * pi / 180))
+			p.Z() * cos(angleY * pi / 180) + p.X() * sin(angleY * pi / 180)),
+			size * size * size / 12 //different power for different bodies
 		);
 	}
 	/*
@@ -306,24 +308,22 @@ void display() {
 
 
 int main(int argc, char **argv) {
+	float stiffness;
+	float gravity;
+	std::cout << "SoftCube edge size (recommended 40): ";
+	std::cin >> size;
+	std::cout << "Stiffness (float number from 0 to 1, recommended 0.01 - 0.02): ";
+	std::cin >> stiffness;
+	std::cout << "Gravity (recommended 0.5): ";
+	std::cin >> gravity;
 
-	//Point3d p(2, 3, 4.1), pp(1, 1, 1);
-	//Point3d p1(p);
-	//p1.show();
-	//p1.set(pp);
-	//p1.show();
-
-	//Particle particle;
-	//particle.setPosition(p);
-	//particle.setLastPosition(pp);
-	//particle.getLastPosition().show();
-	//particle.getPosition().show();
 	
-	particlesSym.setGravity(Point3d(0.f, -0.98f, 0.f));
+	particlesSym.setGravity(Point3d(0.f, -gravity, 0.f)); // -0.98
 	particlesSym.setFriction(0.97f);
 	particlesSym.setGroundFriction(0.96f);
 	particlesSym.setWorldSize(worldW, worldH, worldD);
-	buildCube(20.f);
+	buildCube(size / 2); // 40
+	body.setStiffness(stiffness); // 0.017
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
