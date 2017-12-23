@@ -312,8 +312,10 @@ int main(int argc, char **argv) {
 	float gravity;
 	std::cout << "SoftCube edge size (recommended 40): ";
 	std::cin >> size;
+	size = fabs(size);
 	std::cout << "Stiffness (float number from 0 to 1, recommended 0.01 - 0.02): ";
 	std::cin >> stiffness;
+	stiffness = fabs(stiffness);
 	std::cout << "Gravity (recommended 0.5): ";
 	std::cin >> gravity;
 
