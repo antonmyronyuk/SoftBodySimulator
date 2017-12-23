@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Constraint">
+    <Position X="2.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAgQAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Constraint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FixConstraint">
+    <Position X="5" Y="4" Width="2" />
+    <InheritanceLine Type="Constraint" ManuallyRouted="true">
+      <Path>
+        <Point X="3.375" Y="2.43" />
+        <Point X="3.375" Y="2.736" />
+        <Point X="4.833" Y="2.736" />
+        <Point X="4.833" Y="3.324" />
+        <Point X="6" Y="3.324" />
+        <Point X="6" Y="4" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAMAAAACAAAAAAAIgAMAAAAQAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FixConstraint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DistanceConstraint">
+    <Position X="2.75" Y="3.25" Width="2" />
+    <InheritanceLine Type="Constraint" ManuallyRouted="true">
+      <Path>
+        <Point X="3.375" Y="2.43" />
+        <Point X="3.375" Y="3.244" />
+        <Point X="3.75" Y="3.244" />
+        <Point X="3.75" Y="3.25" />
+      </Path>
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="-0.067" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>BAAAEAAAACAAQIAAAAAAAAAAAUAACgAAAAAAAAAAAAQ=</HashCode>
+      <FileName>DistanceConstraint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BendConstraint">
+    <Position X="0.5" Y="3" Width="2" />
+    <InheritanceLine Type="Constraint" ManuallyRouted="true">
+      <Path>
+        <Point X="3.375" Y="2.43" />
+        <Point X="3.375" Y="2.74" />
+        <Point X="1.5" Y="2.74" />
+        <Point X="1.5" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ABQAEAAAACAAAAAAAAAAAAAQAQAQCAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>BendConstraint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Point3d">
+    <Position X="7.25" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAEQWEQEAQEAAAIAABAAgAAAAYAE=</HashCode>
+      <FileName>Point3d.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Particle">
+    <Position X="5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAgAAAAAAACAAAAAAAIAAAAABAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Particle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParticlesSym">
+    <Position X="9.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAABAIAQRAEgAAAAQAIABQJgAoQIIAAYIAACAAY=</HashCode>
+      <FileName>ParticlesSym.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftBody">
+    <Position X="11.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAIAAAAEAAAJQAACACCAAAAAIYAAoBREAcABw=</HashCode>
+      <FileName>SoftBody.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CONSTRAINT_TYPE">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICA=</HashCode>
+      <FileName>Constraint.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
