@@ -238,7 +238,7 @@ void buildCube(float size) {
 	constraints.push_back(std::make_pair(4, 6));
 	constraints.push_back(std::make_pair(5, 7));
 
-	body.setStiffness(0.017f);
+	//body.setStiffness(0.017f);
 	body.setColor(1.f, 1.f, 1.f);
 	body.setMesh(points, inds, false, constraints);
 	//body.setPointPos(0, 200.f, 200.f, 200.f);
@@ -316,6 +316,9 @@ int main(int argc, char **argv) {
 	std::cout << "Stiffness (float number from 0 to 1, recommended 0.01 - 0.02): ";
 	std::cin >> stiffness;
 	stiffness = fabs(stiffness);
+	if (stiffness < 0.001) {
+		stiffness = 0.001;
+	}
 	std::cout << "Gravity (recommended 0.5): ";
 	std::cin >> gravity;
 
@@ -324,9 +327,9 @@ int main(int argc, char **argv) {
 	particlesSym.setFriction(0.97f);
 	particlesSym.setGroundFriction(0.96f);
 	particlesSym.setWorldSize(worldW, worldH, worldD);
-	buildCube(size / 2); // 40
 	body.setStiffness(stiffness); // 0.017
-
+	buildCube(size / 2); // 40
+	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800);
